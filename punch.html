@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+    <header class="welcome">
+        <h3>Hello, employee</h3>
+        <p>Please select a job to continue.</p>
+    </header>
+    <section class="container">
+        <div id="jobMenu">
+            <form action="">
+                <select name="jobs">
+                    <option value="default">-Select Job-</option>
+                    <option value="152_Baker">152 Baker Ave.</option>
+                    <option value="44_Park">44 Park St.</option>
+                    <option value="99_Emerson">99 Emerson Way</option>
+                    <option value="4428_Magnolia">4428 Magnolia Dr.</option>
+                    <option value="unassigned">Unassigned</option>
+                </select>
+                <br>
+                <br>
+                <input type="submit" onclick="loadTaskM()" />
+            </form>
+        </div>
+        <div id="taskMenu">
+            <form action="">
+                <select name="tasks">
+                    <option value="select">-Select Task-</option>
+                    <option value="warehouse">Warehouse</option>
+                    <option value="driving">Driving</option>
+                    <option value="roughIn">Rough In</option>
+                    <option value="installation">Installation</option>
+                    <option value="misc">Misc.</option>
+                </select>
+                <br>
+                <br>
+                <input type="submit" value="Punch In" onclick="punch()" />
+            </form>
+        </div>
+    </section>
+
+    <script>
+        //this function will load the task menu when an item is selected
+        function loadTaskM() {
+
+        }
+
+        //this function will push a time stamp into an array 
+
+        function punch() {
+
+        }
+    </script>
+
+</body>
+
+</html>
