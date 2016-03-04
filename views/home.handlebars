@@ -1,0 +1,31 @@
+<header class="welcome">
+    <h3>Hello, {{#each users}}{{this.username}}{{/each}}</h3>
+    <p>Please select a job to continue.</p>
+</header>
+<section class="container">
+    <form action="/punch" method="post">
+        <div id="jobMenu">
+            <select class="jobsMenu" name="jobs">
+                <option value="default">-Select Job-</option>
+                {{#each jobs}}
+                <option value="{{this.jNumber}}">{{this.jAddress}}</option>
+                {{/each}}
+            </select>
+        </div>
+        <div id="taskMenu">
+            <select class="tasksMenu" name="tasks">
+                <option value="select">-Select Task-</option>
+                {{#each tasks}}
+                <option value="{{this.tId}}">{{this.tDes}}</option>
+                {{/each}}
+                <option value="misc">Misc.</option>
+            </select>
+            <input type="submit" class="punchBtn" value="Punch In" />
+        </div>
+    </form>
+</section>
+
+<script src="validate.js">
+</script>
+<script src="punch.js">
+</script>
