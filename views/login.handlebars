@@ -5,10 +5,15 @@
 <section class="container">
     <div id="login">
         <h2>Login</h2>
-        <form role="form" action="login" onsubmit="return validateForm()" method="post" name="loginForm">
-            <input type="text" class="form-control" placeholder="Username" name="uname" id="uname" />
+        <form role="form" action="login" method="post" name="loginForm">
+
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Username" name="uname" id="uname" />
+            </div>
             <br>
-            <input type="password" class="form-control" placeholder="Password" name="pass" id="pword" />
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="Password" name="pass" id="pword" />
+            </div>
             <br>
             <input type="submit" value="Login" />
         </form>

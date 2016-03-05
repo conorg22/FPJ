@@ -100,6 +100,19 @@ function findUser(username, password) {
     }
 };
 
+
+function getNextUserId() {
+    var max = 0;
+    for (var i in users) {
+        var x = users[i].id;
+        if (x > max) {
+            max = x;
+        }
+    }
+    return max + 1;
+};
+
+
 //var isRepeat = false;
 //    for (var i = 0; i < users.length; i++) {
 //        if (users[i].username === req.body.username) {
@@ -118,12 +131,12 @@ function findUser(username, password) {
 
 
 
-app.get('/', function (req, res) {
+app.get('/punchIn', function (req, res) {
     if (!req.session.user) {
         res.redirect('/login');
         return;
     }
-    res.render('home', {
+    res.render('punchIn', {
         'jobs': jobs,
         'tasks': tasks,
         'users': users
@@ -136,7 +149,8 @@ app.get('/dashboard', function (req, res) {
         return;
     }
     res.render('dashboard', {
-        'users': users
+        'users': users,
+        'punchIns': punchIns,
     });
 });
 
@@ -144,6 +158,8 @@ app.get('/login', function (req, res) {
     res.render('login');
 
 });
+
+
 
 app.post('/login', function (req, res) {
     var vUser = findUser(req.body.uname, req.body.pass);
@@ -155,18 +171,26 @@ app.post('/login', function (req, res) {
     }
 });
 
+app.get('/signUp', function (req, res) {
+    res.render('signUp')
+});
+
 app.post('/signUp', function (req, res) {
     var newUser = {
-        username: req.body.username,
+        username: req.body.uname,
+        id: getNextUserId(),
+        password: req.body.pass
     }
 })
 
 app.post('/punch', function (req, res) {
+    var d = new Date();
     var newPunch = {
         taskid: req.body.tasks,
         jobid: req.body.jobs,
         userid: req.session.user.id,
-        timestamp: (new Date()).getTime()
+        timestamp: d.getTime(),
+        prettyTime: d.toDateString() + d.toTimeString()
     };
     punchIns.push(newPunch);
     save("punchIns.txt", punchIns, function () {
@@ -174,7 +198,6 @@ app.post('/punch', function (req, res) {
     });
     res.redirect('/dashboard');
 });
-
 
 app.use(express.static('public'));
 app.listen(3000);

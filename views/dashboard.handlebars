@@ -5,7 +5,7 @@
 
 
 <section>
-    <form action="/" method="get">
+    <form action="/punchIn" method="get">
         <input type="submit" class="taskPage" value="Get To Work!" />
     </form>
 </section>
@@ -13,8 +13,11 @@
 
 <section>
     <!--    display punch data-->
-    <ol>
-        <li></li>
+    <h2>Today's Log</h2>
+
+    <ol>{{#each punchIns}}
+        <li>{{this.prettyTime}}</li>
+        {{/each}}
     </ol>
 
 </section>

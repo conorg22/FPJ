@@ -16,7 +16,7 @@
             <select class="tasksMenu" name="tasks">
                 <option value="select">-Select Task-</option>
                 {{#each tasks}}
-                <option value="{{this.tId}}">{{this.tDes}}</option>
+                <option value="{{this.tId}}{{this.tDes}}">{{this.tDes}}</option>
                 {{/each}}
                 <option value="misc">Misc.</option>
             </select>
