@@ -1,5 +1,5 @@
 <header class="welcome">
-    <h3>Hello, {{#each users}}{{this.username}}{{/each}}</h3>
+    <h3>Hello, {{this.username}}</h3>
     <p>Please select a job to continue.</p>
 </header>
 
@@ -20,4 +20,11 @@
         {{/each}}
     </ol>
 
+</section>
+
+
+<section>
+    <form action="/logout" method="post">
+        <input type="submit" class="taskPage" value="Logout" />
+    </form>
 </section>

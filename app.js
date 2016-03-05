@@ -22,7 +22,7 @@ app.set('view engine', 'handlebars');
 var storedJobs = [];
 var storedUsers = [];
 var punchIns = [];
-
+var users = [];
 
 function save(file, data, callback) {
     fs.writeFile(file, JSON.stringify(data), function (err, data) {
@@ -47,7 +47,7 @@ function loadSync(file) {
 };
 
 punchIns = loadSync('punchIns.txt');
-//storedUsers = loadSync('storedUsers.txt');
+users = loadSync('users.txt');
 
 
 var tasks = [
@@ -74,23 +74,10 @@ var jobs = [
         jAddress: "41 Baker Ave."
 
     }
-]
-
-function User(id, username, password) {
-    this.id = id;
-    this.username = username;
-    this.password = password
-};
-
-var users = [
-    {
-        id: 1,
-        username: "conor",
-        password: "12"
-},
+];
 
 
-    ];
+
 
 function findUser(username, password) {
     for (var i in users) {
@@ -171,6 +158,12 @@ app.post('/login', function (req, res) {
     }
 });
 
+app.post('/logout', function (req, res) {
+    var cUser = req.session.user;
+    cUser = !req.session.user;
+    res.redirect('/login')
+});
+
 app.get('/signUp', function (req, res) {
     res.render('signUp')
 });
@@ -180,8 +173,15 @@ app.post('/signUp', function (req, res) {
         username: req.body.uname,
         id: getNextUserId(),
         password: req.body.pass
-    }
-})
+    };
+    users.push(newUser);
+    save("users.txt", users, function () {
+        console.log("Successfully saved new user!");
+    });
+    res.redirect('/login');
+});
+
+
 
 app.post('/punch', function (req, res) {
     var d = new Date();
