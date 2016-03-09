@@ -38,7 +38,7 @@
                             <select class="form-control jobsMenu" id="jobMenu" name="jobs">
                                 <option value="default">-Select Job-</option>
                                 {{#each cUserJobs}}
-                                <option value="{{this.jNumber}}">{{this.jName}} {{this.jStreet}}</option>
+                                <option value="{{this.jNumber}}.{{this.jName}}">{{this.jName}} {{this.jStreet}}</option>
                                 {{/each}}
                                 <option value="unassigned">Unassigned</option>
                             </select>
@@ -51,7 +51,7 @@
                             <select class="form-control" id="taskMenu" name="tasks">
                                 <option value="select">-Select Task-</option>
                                 {{#each tasks}}
-                                <option value="{{this.tId}}{{this.tDes}}">{{this.tDes}}</option>
+                                <option value="{{this.tId}}.{{this.tDes}}">{{this.tDes}}</option>
                                 {{/each}}
                                 <option value="PUNCHOUT">Punch Out</option>
                             </select>

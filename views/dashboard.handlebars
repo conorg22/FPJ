@@ -1,47 +1,81 @@
-<header class="welcome">
-    <p>Please select a job to continue.</p>
-</header>
 
 
-<section>
-    <form action="/punchIn" method="get">
-        <input type="submit" class="taskPage" value="Get To Work!" />
-    </form>
-</section>
 
+<div class="container">
+    <div class="row drop">
+        <div class="jobs col-xs-12 col-md-6">
+            <div class="wrapper">
+                <form class="form-horizontal" action="/punchIn" method="get">
+                  <fieldset>
+                    <h2>Click to Punch In</h2>
+                    <div class="form-group">
+                      <div class="col-lg-10 col-lg-offset-2">
+                        <input type="submit" class="taskPage btn btn-success" value="Get To Work!" />
+                      </div>
+                    </div>
+                  </fieldset>
+                </form>
+            </div>
+        </div>
+        <div class="jobs col-xs-12 col-md-6"> 
+          <div class="wrapper">
+             <h2>Today's Log</h2>
+              <div class="list-group">
+               {{#each cUserPunch}}
+                <li class="list-group-item">
+                  <h4 class="list-group-item-heading">{{this.prettyTime}}</h4>
+                  <p class="list-group-item-text">{{this.jNumber}}</p>
+                  <p class="list-group-item-text">{{this.taskid}}</p>
+                </li>
+                {{/each}}
+                <li class="list-group-item active">
+                  <h3 class=" list-group-item-heading">Your Time</h3>
+                  <h5 class="list-group-item-text">You've been punched in for <span id="hoursNow"></span></h5>  
+                </li>
+                <li class="list-group-item">
+                <form action="/backToWork" method="post">
+                    <input type="submit" class="taskPage btn btn-success" value="Back To Work!" />
+                </form>
+                </li>
+              </div>
+          </div>
+        </div>
+    </div>   
+</div>
 
-<section>
-    <!--    display punch data-->
-    <h2>Today's Log</h2>
-    <ol>
-        {{#each cUserPunch}}
-        <li>{{this.prettyTime}}</li>
-        {{/each}}
-    </ol>
-</section>
-<section>
-    <p>You've been punched in for <span id="hoursNow">{{currentHours}}</span> hours.</p>
-</section>
-
-<section>
+<!--
     <form action="/logout" method="post">
         <input type="submit" class="taskPage" value="Logout" />
     </form>
-</section>
+-->
+
 <script> 
 var timeElapsed = {{currentHours}};
 var firstPunch = {{getPunchIn}};
 var punchOut = {{getPunchOut}};
-var myVar = setInterval(function(){ timeClock() }, 1000);
+
+
+
+
 function timeClock(){ 
-    if (punchOut !== 0 || firstPunch === 0){
-        return;   
-    }else{
+    if (firstPunch === 0){
+        document.getElementById("hoursNow").innerHTML = "0 hours";
+        //return;
+    } else if (punchOut === 0){  
+        var newTime = moment(firstPunch);
+        document.getElementById("hoursNow").innerHTML = moment.preciseDiff(newTime, moment());
+        setInterval(function(){ timeClock() }, 1000);
+        //return;   
+    } else {
         var newTime = moment(firstPunch);
         //timeElapsed = new Date().getTime() - firstPunch;
-        document.getElementById("hoursNow").innerHTML = moment.preciseDiff(newTime, moment());
+        console.log(document.getElementById("hoursNow"));
+        console.log(moment.preciseDiff(newTime, moment(punchOut)));
+        document.getElementById("hoursNow").innerHTML = moment.preciseDiff(newTime, moment(punchOut));
+        
     }
-};   
+}; 
+setTimeout(timeClock,0);
 </script>
 
    

@@ -2,15 +2,47 @@
     <div class="jumbotron">
         <h1>Welcome to Workflow</h1>
         <p>Track projects and time easily and efficiently.</p>
-        <a id="slide" href="#login"><span class="glyphicon glyphicon-chevron-down"></span></a>
+        <a id="slide" class="slide" href="#"><span class="glyphicon glyphicon-chevron-down"></span></a>
     </div>
 </section>
 
 
 <div class="container-fluid boxes">
     <div class="col-md-6 col-md-offset-3">
-        <div id="login" class="">
-            <h2>Login</h2>
+        <div id="login" class="login">
+            <form class="form-horizontal" role="form" action="login" method="post" name="loginForm">
+                <fieldset>
+                    <h2>Login</h2>
+                    <div class="form-group">
+                        <label for="uname" class="col-lg-2 control-label">Username</label>
+                        <div class="col-lg-10">
+                            <input type="text" class="form-control" placeholder="Username" name="uname" id="uname" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="pword" class="col-lg-2 control-label">Password</label>
+                        <div class="col-lg-10">
+                            <input type="password" class="form-control" placeholder="Password" name="pass" id="pword">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-lg-10 col-lg-offset-2">
+                            <input class="btn btn-primary" type="submit" value="Login" />
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+<!--
+<h2>Login</h2>
             <form class="form-horizontal" role="form" action="login" method="post" name="loginForm">
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Username" name="uname" id="uname" />
@@ -22,35 +54,6 @@
                 <br>
                 <input class="btn btn-primary" type="submit" value="Login" />
             </form>
-        </div>
-
-    </div>
-</div>
-
-<form class="form-horizontal">
-  <fieldset>
-    <legend>Legend</legend>
-    <div class="form-group">
-      <label for="inputEmail" class="col-lg-2 control-label">Email</label>
-      <div class="col-lg-10">
-        <input type="text" class="form-control" id="inputEmail" placeholder="Email">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="inputPassword" class="col-lg-2 control-label">Password</label>
-      <div class="col-lg-10">
-        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-      </div>
-    </div>
-    
-    <div class="form-group">
-      <div class="col-lg-10 col-lg-offset-2">
-        <button type="reset" class="btn btn-default">Cancel</button>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </div>
-    </div>
-  </fieldset>
-</form>
-
+-->
 
 <script src="login.js"></script>

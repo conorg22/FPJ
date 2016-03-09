@@ -20,9 +20,9 @@
     <script src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/additional-methods.min.js"></script>
     <script src="http://momentjs.com/downloads/moment.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/style.css">
-    <style>
-        
-    </style>
+    <script src="readable-range.js"></script>
+       
+
 </head>
 
 <body>
@@ -35,7 +35,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 {{#if user}}
-                <a class="showIn navbar-brand">Welcome, {{user.username}}</a> {{else}}
+                <a class="showIn navbar-brand">Welcome, {{user.firstName}}</a> {{else}}
                 <a class="showOut navbar-brand">Workflow</a> {{/if}}
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
@@ -49,7 +49,7 @@
                     {{#if user}}
                     <li class="showIn"><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>{{else}}
                     <li class="showOut"><a href="/signUp"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                    <li class="showOut"><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    <li class="showOut"><a id="slide" class="slide" href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                     {{/if}}
                 </ul>
             </div>
@@ -58,8 +58,8 @@
 
 
     {{{body}}}
+<script src="login.js"></script>
 
-<script src="readable-range.js"></script>
     <script src="validate.js">
     </script>
 </body>

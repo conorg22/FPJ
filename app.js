@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var fs = require("fs");
 var moment = require("moment");
-var PUNCHOUT = -1;
+var PUNCHOUT = "PUNCHOUT";
 
 //moment().format();
 var app = express();
@@ -160,7 +160,7 @@ function getTodaysHours(userId) {
 };
 
 function getPunchIn(userId) {
-    var todaysHours = getTodaysPunches(userId);
+    var todaysHours = findRemovePunchOut(userId);
     //loop through the array created by calling getTodaysPunches 
     if (todaysHours.length === 0) {
         return 0;
@@ -171,13 +171,24 @@ function getPunchIn(userId) {
 }
 
 function getPunchOut(userId) {
-    var todaysHours = getTodaysPunches(userId);
+    var todaysHours = getTodaysPunches(userId).reverse();
     for (var i in todaysHours) {
         if (todaysHours[i].taskid == PUNCHOUT) {
             return todaysHours[i].timestamp;
         }
     }
     return 0;
+}
+
+function findRemovePunchOut(userId){
+    var noPunchOut = [];
+    var todaysPunches = getTodaysPunches(userId);
+    for(var i in todaysPunches){
+        if (todaysPunches[i].taskid !== PUNCHOUT){
+            noPunchOut.push(todaysPunches[i]);
+        }
+    }
+    return noPunchOut;
 }
 
 // login page stuff
@@ -206,6 +217,8 @@ app.get('/signUp', function (req, res) {
 
 app.post('/signUp', function (req, res) {
     var newUser = {
+        firstName: req.body.fName,
+        lastName: req.body.lName,
         username: req.body.uname,
         id: getNextUserId(),
         password: req.body.pass
@@ -228,12 +241,12 @@ app.get('/dashboard', function (req, res) {
         'cUserPunch': getTodaysPunches(req.session.user.id),
         'currentHours': getTodaysHours(req.session.user.id),
         'getPunchIn': getPunchIn(req.session.user.id),
-        'getPunchOut':getPunchOut(req.session.user.id)
+        'getPunchOut':getPunchOut(req.session.user.id),
+
     });
     console.log(req.session.user);
     //console.log(cUserPunch);
 });
-
 
 //show the jobs page
 app.get('/jobs', function (req, res) {
@@ -289,7 +302,7 @@ app.post('/punch', function (req, res) {
     var d = new Date();
     var newPunch = {
         taskid: req.body.tasks,
-        jobid: req.body.jobs,
+        jNumber: req.body.jobs,
         userid: req.session.user.id,
         timestamp: d.getTime(),
         prettyTime: moment(d).format('MMMM Do YYYY, h:mm:ss a')
