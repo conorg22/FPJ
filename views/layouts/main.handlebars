@@ -3,12 +3,14 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Tracks</title>
 
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-
+    <!--    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/yeti/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 
@@ -16,19 +18,15 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js"></script>
     <script src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/additional-methods.min.js"></script>
-
-
+    <script src="http://momentjs.com/downloads/moment.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/style.css">
     <style>
-        * {
-            -webkit-border-radius: 0 !important;
-            -moz-border-radius: 0 !important;
-            border-radius: 0 !important;
-        }
+        
     </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-inverse">
+    <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -36,19 +34,23 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Project Tracks</a>
+                {{#if user}}
+                <a class="showIn navbar-brand">Welcome, {{user.username}}</a> {{else}}
+                <a class="showOut navbar-brand">Workflow</a> {{/if}}
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
+                {{#if user}}
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
                     <li><a href="/dashboard">Dashboard</a></li>
-                    <li><a href="#">Page 2</a></li>
-                    <li><a href="#">Page 3</a></li>
+                    <li><a href="/jobs">My Jobs</a></li>
                 </ul>
+                {{/if}}
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="navbar-brand">{{#each users}}{{this.username}}{{/each}}</li>
-                    <li><a href="/signUp"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                    <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    {{#if user}}
+                    <li class="showIn"><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>{{else}}
+                    <li class="showOut"><a href="/signUp"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                    <li class="showOut"><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    {{/if}}
                 </ul>
             </div>
         </div>
@@ -57,10 +59,9 @@
 
     {{{body}}}
 
-
+<script src="readable-range.js"></script>
     <script src="validate.js">
     </script>
-
 </body>
 
 </html>

@@ -1,5 +1,4 @@
 <header class="welcome">
-    <h3>Hello, {{this.username}}</h3>
     <p>Please select a job to continue.</p>
 </header>
 
@@ -14,17 +13,35 @@
 <section>
     <!--    display punch data-->
     <h2>Today's Log</h2>
-
-    <ol>{{#each punchIns}}
+    <ol>
+        {{#each cUserPunch}}
         <li>{{this.prettyTime}}</li>
         {{/each}}
     </ol>
-
 </section>
-
+<section>
+    <p>You've been punched in for <span id="hoursNow">{{currentHours}}</span> hours.</p>
+</section>
 
 <section>
     <form action="/logout" method="post">
         <input type="submit" class="taskPage" value="Logout" />
     </form>
 </section>
+<script> 
+var timeElapsed = {{currentHours}};
+var firstPunch = {{getPunchIn}};
+var punchOut = {{getPunchOut}};
+var myVar = setInterval(function(){ timeClock() }, 1000);
+function timeClock(){ 
+    if (punchOut !== 0 || firstPunch === 0){
+        return;   
+    }else{
+        var newTime = moment(firstPunch);
+        //timeElapsed = new Date().getTime() - firstPunch;
+        document.getElementById("hoursNow").innerHTML = moment.preciseDiff(newTime, moment());
+    }
+};   
+</script>
+
+   

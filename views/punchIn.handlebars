@@ -1,29 +1,74 @@
+<!--
 <header class="welcome">
-    <h3>Hello, {{#each users}}{{this.username}}{{/each}}</h3>
     <p>Please select a job to continue.</p>
 </header>
 <section class="container">
-    <form action="/punch" method="post">
+    <form role="form" class="form" action="/punch" method="post">
         <div id="jobMenu">
-            <select class="jobsMenu" name="jobs">
+            <select class="form-control jobsMenu" name="cUserJobs">
                 <option value="default">-Select Job-</option>
-                {{#each jobs}}
-                <option value="{{this.jNumber}}">{{this.jAddress}}</option>
+                {{#each cUserJobs}}
+                <option value="{{this.jNumber}}">{{this.jStreet}}</option>
                 {{/each}}
             </select>
         </div>
         <div id="taskMenu">
-            <select class="tasksMenu" name="tasks">
+            <select class="form-control tasksMenu" name="tasks">
                 <option value="select">-Select Task-</option>
                 {{#each tasks}}
-                <option value="{{this.tId}}{{this.tDes}}">{{this.tDes}}</option>
+                <option value="{{this.tId}}-{{this.tDes}}">{{this.tDes}}</option>
                 {{/each}}
-                <option value="misc">Misc.</option>
+                <option value="PUNCHOUT">Punch Out</option>
             </select>
-            <input type="submit" class="punchBtn" value="Punch In" />
+            <input type="submit" class="form-control btn btn-primary punchBtn" value="Punch In" />
         </div>
     </form>
 </section>
+-->
+
+<div class="container">
+    <div class="row drop">
+        <div class="pWrapper col-lg-6 col-lg-offset-3 col-sm-8 col-sm-offset-2">
+            <form class="form-horizontal" action="/punch" method="post">
+                <fieldset>
+                    <legend>Please select a job to continue.</legend>
+                    <div class="form-group">
+                        <label for="jobMenu" class="col-lg-2 control-label">Jobs</label>
+                        <div class="col-lg-10">
+                            <select class="form-control jobsMenu" id="jobMenu" name="jobs">
+                                <option value="default">-Select Job-</option>
+                                {{#each cUserJobs}}
+                                <option value="{{this.jNumber}}">{{this.jName}} {{this.jStreet}}</option>
+                                {{/each}}
+                                <option value="unassigned">Unassigned</option>
+                            </select>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="form-group tasksMenu">
+                        <label for="jobMenu" class="col-lg-2 control-label">Tasks</label>
+                        <div class="col-lg-10">
+                            <select class="form-control" id="taskMenu" name="tasks">
+                                <option value="select">-Select Task-</option>
+                                {{#each tasks}}
+                                <option value="{{this.tId}}{{this.tDes}}">{{this.tDes}}</option>
+                                {{/each}}
+                                <option value="PUNCHOUT">Punch Out</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-10 col-lg-offset-2">
+                            <input type="submit" class="btn btn-success punchBtn" value="Punch In" />
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+
+
 
 <script src="validate.js">
 </script>

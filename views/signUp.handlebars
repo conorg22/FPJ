@@ -1,15 +1,45 @@
-<header>
 
-    <h2>Join Us</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-3 col-sm-8 col-sm-offset-2">
+            
+            <div class="registerForm">
+               <div class="pTitle">
+                <h2>Join Us</h2>
+            </div>
+                <form class="form-horizontal" id="signUp" role="form" action="/signUp" method="post">
+                    <fieldset>
+                        <legend>Sign Up</legend>
+                        <div class="form-group">
+                            <label for="uname" class="col-lg-2 control-label">Username</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control rUname" placeholder="Username" name="uname" id="uname" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="pword" class="col-lg-2 control-label">Password</label>
+                            <div class="col-lg-10">
+                                <input type="password" class="form-control rPword" placeholder="Password" name="pass" id="pword" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-10 col-lg-offset-2">
+                                <button type="reset" class="btn btn-default">Cancel</button>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
-</header>
-
-<section class="registerForm">
-    <form id="signUp" role="form" action="/signUp" method="post">
+<!--
+<form id="signUp" role="form" action="/signUp" method="post">
         <input type="text" class="form-control rUname" placeholder="Username" name="uname" id="uname" />
         <br>
         <input type="password" class="form-control rPword" placeholder="Password" name="pass" id="pword" />
         <br>
         <input type="submit" value="Sign Up" />
-    </form>
-</section>
+    </form>-->

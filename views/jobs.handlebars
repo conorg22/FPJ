@@ -1,0 +1,86 @@
+
+
+
+
+<section class="container">
+    <div class="row drop">
+        <div class="jobs col-xs-12 col-md-6">
+            <div class="wrapper">
+                <h2>My Jobs</h2> {{#each cUserJobs}}
+                <div class="panel-group">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                      <a data-toggle="collapse" href="#collapse{{@index}}">Job Name: {{this.jName}}</a>
+                    </h4>
+                        </div>
+                        <div id="collapse{{@index}}" class="panel-collapse collapse">
+                            <div class="panel-body">Street Address: {{this.jStreet}}</div>
+                            <div class="panel-footer warning">Contact: {{this.jContact}}</div>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+        <div class="jobs col-xs-12 col-md-6">
+            <div class="wrapper">
+                <div id="newJobForm">
+                    <form class="form-horizontal" action="/createJob" method="post" name="createJob">
+                        <fieldset>
+                            <h2>Create A New Job</h2>
+                            <div class="form-group">
+                                <label for="jName" class="col-lg-2 control-label">Job Name</label>
+                                <div class="col-lg-10">
+                                    <input type="text" class="form-control" placeholder="Job Name" name="jName" id="jName" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="jStreet" class="col-lg-2 control-label">Street Address</label>
+                                <div class="col-lg-10">
+                                    <input type="text" class="form-control" placeholder="Street Address" name="jStreet" id="jStreet" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="jContact" class="col-lg-2 control-label">Contact</label>
+                                <div class="col-lg-10">
+                                    <input type="text" class="form-control" placeholder="Contact" name="jContact" id="jContact" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-10 col-lg-offset-2">
+                                    <button type="reset" class="btn btn-default">Cancel</button>
+                                    <input class="btn btn-primary" type="submit" value="Create Job" />
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!--
+<h2>Add New Job</h2>
+<form class="" role="form" action="/createJob" method="post" name="createJob">
+
+    <div class="form-group">
+        <input type="text" class="form-control" placeholder="Job Name" name="jName" id="jName" />
+    </div>
+    <br>
+    <div class="form-group">
+        <input type="text" class="form-control" placeholder="Street Address" name="jStreet" id="jStreet" />
+    </div>
+    <br>
+    <input class="btn btn-primary" type="submit" value="Create Job" />
+</form>
+-->
+
+
+
+
+
+
